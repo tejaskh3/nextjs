@@ -1,12 +1,21 @@
-import React from 'react'
+import React from "react";
 
-const Input = ({htmlFor, lableData, otherProps}) => {
+const Input = ({ htmlFor, lableData, otherProps }) => {
   return (
     <>
-        <label htmlFor={htmlFor} className='block mb-1 text-sm font-medium text-gray-900 dark:text-white'>{lableData}</label>
-        <input className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500' {...otherProps}/>
+      <label
+        htmlFor={htmlFor}
+        className="block text-gray-700 text-sm font-bold mb-0"
+      >
+        {lableData}
+      </label>
+      <input
+        className="shadow  border  w-full py-2 px-5  leading-tight focus:outline-none focus:shadow-outline rounded-lg !text-[#000]"
+        {...otherProps}
+        style={{color:"#000"}}
+      />
     </>
-  )
-}
+  );
+};
 
 export default Input;
