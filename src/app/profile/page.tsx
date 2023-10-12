@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import toast, { Toaster, ToastBar } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 const ProfilePage = () => {
-  const [data, setData] = useState({ _id: "" });
+  const [data, setData] = useState({ });
   const [loggingOut, setLoggingOut] = useState(false);
   const router = useRouter();
 
@@ -55,7 +55,12 @@ const ProfilePage = () => {
           )}
         </Toaster>
       </nav>
-      <h1>{data._id}</h1>
+      <div className="flex flex-col items-center justify-center ">
+        <div className="flex flex-row text-gray-50">
+          <span>user id:</span> <p>{data._id}</p>
+        </div>
+        <h2 className="text-4xl text-blue-200">welcome {data.userName}</h2>
+      </div>
     </div>
   );
 };
