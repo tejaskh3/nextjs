@@ -13,14 +13,14 @@ export const POST = async (request: NextRequest) => {
     //checking if the user exist or not
     const user = await User.findOne({ email });
     if (!user) {
-      return NextResponse.json({ error: "user didn't exist" }, { status: 400 });
+      return NextResponse.json({ message: "user didn't exist" }, { status: 400 });
     }
 
     // checking password if user exist
     const isValidPassword = await bcrypt.compare(password, user.password);
     if (!isValidPassword) {
       return NextResponse.json(
-        { error: "password didn't match" },
+        { message: "password didn't match" },
         { status: 400 }
       );
     }
@@ -38,7 +38,7 @@ export const POST = async (request: NextRequest) => {
       message: "Login successfully",
       success: true,
     });
-    response.cookies.set("cookies", token, {
+    response.cookies.set("token", token, {
       httpOnly: true,
       path: "/",
     });

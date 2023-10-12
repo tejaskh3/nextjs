@@ -43,6 +43,7 @@ const SignUpPage = () => {
       }
 
       setUser(defaultUser);
+      toast.success("User Created");
       router.push("/login");
     } catch (error: any) {
       console.log("this is an error ");

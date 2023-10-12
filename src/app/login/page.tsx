@@ -5,12 +5,14 @@ import Link from "next/link";
 import axios from "axios";
 import Input from "@/component/input/Input.component";
 import toast, { Toaster, ToastBar } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const LoginPage = () => {
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const { email, password } = user;
   const handleChange = (e: ChangeEvent) => {
@@ -30,12 +32,22 @@ const LoginPage = () => {
         return;
       }
 
-      //   console.log(user);
       const response = await axios.post("api/users/login", user);
       console.log(response);
+      // if (response.status === 400) {
+      //   toast.error(`Bad Request: ${response.statusText}`);
+      //   // You can also handle the specific error message from the server if available
+      //   if (response.data && response.data.message) {
+      //     toast.error(`Error message: ${response.data.message}`);
+      //   }
+      //   return;
+      // }
+      
+      toast.success("Login successfully");
+      router.push("/profile");
     } catch (error: any) {
       console.log(error);
-      toast.error(`Unable to login due to, ${error.response}`);
+      toast.error(`Unable to login due to, ${error.message}`);
     } finally {
       setLoading(false);
     }
@@ -43,7 +55,7 @@ const LoginPage = () => {
   return (
     <div className="flex m-auto flex-col items-center justify-center py-3 content-center mt-40 gap-3 p-5">
       <h3 className="text-4xl text-gray-900 dark:text-white">
-      {loading?"Loading...":"Login"}
+        {loading ? "Loading..." : "Login"}
       </h3>
       <form className="flex m-auto flex-col gap-2 ">
         <Input
@@ -76,7 +88,7 @@ const LoginPage = () => {
         onClick={handleSubmit}
         className="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
       >
-        {loading?"logging":"Login"}
+        {loading ? "logging..." : "Login"}
       </button>
       <Toaster>
         {(t) => (
