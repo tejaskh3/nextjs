@@ -4,6 +4,7 @@ interface IToDo {
   name: string;
   description: string;
   isCompleted: true;
+  userId:String;
 }
 
 
@@ -22,6 +23,9 @@ try {
     },
     isCompleted:{
       type:Boolean,
+    },
+    userId:{
+      type:String
     }
   });
 

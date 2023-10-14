@@ -54,7 +54,7 @@ const LoginPage = () => {
   };
   return (
     <div className="flex m-auto flex-col items-center justify-center py-3 content-center mt-40 gap-3 p-5">
-      <h3 className="text-4xl text-gray-900 dark:text-white">
+      <h3 className="text-4xl text-teal-300 dark:text-white">
         {loading ? "Loading..." : "Login"}
       </h3>
       <form className="flex m-auto flex-col gap-2 ">
@@ -104,7 +104,7 @@ const LoginPage = () => {
           />
         )}
       </Toaster>
-      <Link href="/signup">Don't have an account.</Link>
+      <Link className="text-white" href="/signup">Don't have an account.</Link>
     </div>
   );
 };

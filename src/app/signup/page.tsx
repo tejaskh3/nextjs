@@ -57,8 +57,8 @@ const SignUpPage = () => {
     }
   };
   return (
-    <div className="flex m-auto flex-col items-center justify-center py-3 content-center mt-40 gap-3 ">
-      <h3 className="text-4xl text-gray-900 dark:text-white">
+    <div className="flex m-auto flex-col items-center justify-center py-3 content-center mt-40 gap-3">
+      <h3 className="text-4xl text-teal-300 dark:text-white">
         {loading ? "Loading..." : "Sign Up"}
       </h3>
       <form className="flex m-auto flex-col gap-2 ">
@@ -120,7 +120,7 @@ const SignUpPage = () => {
           />
         )}
       </Toaster>
-      <Link href="/login">Already have an account.</Link>
+      <Link href="/login" className="text-white">Already have an account.</Link>
     </div>
   );
 };
