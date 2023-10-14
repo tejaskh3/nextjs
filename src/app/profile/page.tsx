@@ -32,6 +32,9 @@ const ProfilePage = () => {
     setData(response.data.user);
   };
 
+  // to make p as input when user click the edit button
+  const [isEditable, setIsEditable] = useState(false);
+  const [editedDescription, setEditedDescription] = useState("");
   const handleLogout = async () => {
     try {
       const res = await axios.get("api/users/logout");
@@ -84,11 +87,35 @@ const ProfilePage = () => {
   const handleComplete = async () => {
     console.log("complete");
   };
-  const handleEdit = async () => {
-    console.log("edit");
+
+  const handleEdit = async (taskID: any, btn: any) => {
+    try {
+      let response;
+      if (btn === "isCompleted") {
+        response = await axios.patch(`api/todo/${taskID}`, {
+          isCompleted: true,
+        });
+      } else {
+        response = await axios.patch(`api/todo/${taskID}`, {
+          description: editedDescription,
+        });
+        if(response.status===200){
+          toast.success("Edited successfully");
+          return
+        }
+        else{
+          toast.error("unable to edit");
+          return ;
+        }
+      }
+    } catch(error:any){
+      toast.error("unable to edit");
+      console.log("unable to edit", error.message);
+      
+    }
   };
 
-  const handleDelete = async (taskID) => {
+  const handleDelete = async (taskID: any) => {
     try {
       const response = await axios.delete(`api/todo/${taskID}`);
 
@@ -216,6 +243,8 @@ const ProfilePage = () => {
               handleEdit={handleEdit}
               _id={_id}
               isCompleted={isCompleted}
+              isEditable={isEditable}
+              setEditedDescription={setEditedDescription}
             />
           );
         })}
